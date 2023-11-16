@@ -1,13 +1,31 @@
-import React from 'react';
+import NotFound2 from '../assets/error404/NotFound2.jpg';
+import { Button } from 'flowbite-react';
+import { HiOutlineArrowRight } from 'react-icons/hi';
+import { Link } from 'react-router-dom';
 
 const ErrorPage = () => {
-    return (
-        <div className='w-5/6 mx-auto border border-cyan-100 flex justify-center items-center'>
-           
-            <img src="https://img.freepik.com/free-vector/404-error-with-landscape-concept-illustration_114360-7888.jpg?w=740&t=st=1700143345~exp=1700143945~hmac=e0745847d3f15139b56e979401165723c7b879f689e6911232934a616486a1f1" alt="404 error page" />
-           
+  return (
+    <div className='container min-h-screen mx-auto flex flex-col justify-center content-center items-center '>
+        <div className='w-full md:w-2/3 lg:w-1/2 p-5 '>
+        <img
+          src={NotFound2}
+          alt="404 error page"
+          className=' object-cover'
+        />
+    
         </div>
-    );
+      
+
+      <div>
+        <Link to='/'>
+          <Button gradientDuoTone="purpleToBlue">
+            Go to Home
+            <HiOutlineArrowRight className="ml-2 h-5 w-5" />
+          </Button>
+        </Link>
+      </div>
+    </div>
+  );
 };
 
 export default ErrorPage;
