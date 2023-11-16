@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Banner = () => {
+const ManageFood = () => {
     return (
         <div>
             
@@ -8,4 +8,4 @@ const Banner = () => {
     );
 };
 
-export default Banner;
+export default ManageFood;

@@ -2,6 +2,12 @@ import { createBrowserRouter } from "react-router-dom";
 import Layout from "../Layout/Layout";
 import ErrorPage from "../ErrorPage/ErrorPage";
 import Home from "../pages/Home/Home/Home";
+import SignIn from "../Credentials/SignIn";
+import SignUp from "../Credentials/SignUp";
+import AvailableFood from "../pages/AvailableFood/AvailableFood";
+import AddFood from "../pages/AddFood/AddFood";
+import ManageFood from "../pages/ManageFood/ManageFood";
+import MyFoodReq from "../pages/MyFoodReq/MyFoodReq";
 
 
 const Routes = createBrowserRouter([
@@ -14,10 +20,34 @@ const Routes = createBrowserRouter([
             path:"/",
             element:<Home></Home>
         },
-        // {
-        //   path:"*",
-        //   element:<ErrorPage></ErrorPage>  
-        // }
+        {
+            path:"/signin",
+            element:<SignIn></SignIn>,
+                       
+        },
+        {
+            path:"/signup",
+            element:<SignUp></SignUp>
+        },
+        {
+            path:"/availablefood",
+            element:<AvailableFood></AvailableFood>,
+        },
+        {
+          path:"/addfood",
+          element:<AddFood></AddFood>,
+        },
+        {
+          path:"/managefood",
+          element:<ManageFood></ManageFood>,
+        },
+        {
+          path:"/myfoodred",
+          element:<MyFoodReq></MyFoodReq>
+        }
+
+
+      
       ]
     },
   ]);
