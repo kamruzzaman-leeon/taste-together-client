@@ -2,14 +2,15 @@ import { Helmet } from "react-helmet";
 
 
 const AvailableFood = () => {
-    <Helmet>
-        <title>Available Food | TasteTogether</title>
-    </Helmet>
+   
     return (
 
-        <div>
+        <>
+         <Helmet>
+        <title>Available Food | TasteTogether</title>
+    </Helmet>
             this is Available food
-        </div>
+        </>
     );
 };
 

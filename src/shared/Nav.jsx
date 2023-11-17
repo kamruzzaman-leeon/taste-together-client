@@ -81,7 +81,7 @@ const Nav = () => {
 
         {
           user?.email ? '': <Navbar.Link  as={Link} to="/signin" 
-          className={`${activeNavItem==='signIn' ? 'active border-b-4 border-blue-600 text-blue-600 ':'' } hover:outline outline-offset-2 outline-blue-600 `}onClick={()=>handleActiveNavItem('signIn')}>Login</Navbar.Link>
+          className={`${activeNavItem==='signIn' ? 'active border-b-4 border-blue-600 text-blue-600 ':'' } hover:outline outline-offset-2 outline-blue-600 `}onClick={()=>handleActiveNavItem('signIn')}>Sign In</Navbar.Link>
           
         }
        
