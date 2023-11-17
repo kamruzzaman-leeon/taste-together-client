@@ -2,6 +2,7 @@ import { Outlet } from "react-router-dom";
 
 import Nav from "../shared/Nav";
 import { Helmet } from "react-helmet";
+import Footbar from "../shared/Footbar";
 
 
 
@@ -12,9 +13,12 @@ const Layout = () => {
 
   return (
 
-    <div>
+    <div className="">
       <Nav></Nav>
-      <Outlet></Outlet>
+      <div className="min-h-screen">
+        <Outlet></Outlet>
+      </div>
+      <Footbar></Footbar>
 
     </div>
   );
