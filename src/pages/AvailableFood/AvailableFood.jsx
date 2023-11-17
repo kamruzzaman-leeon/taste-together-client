@@ -1,14 +1,12 @@
+import { Helmet } from "react-helmet";
 
-import { Helmet } from 'react-helmet';
 
 const AvailableFood = () => {
     <Helmet>
-        <title>
-        Available Food | Taste Together
-        </title>
+        <title>Available Food | TasteTogether</title>
     </Helmet>
     return (
-        
+
         <div>
             this is Available food
         </div>
