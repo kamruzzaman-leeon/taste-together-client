@@ -87,7 +87,7 @@ const SignUp = () => {
                                 <div className='mb-2 block'>
                                     <Label htmlFor='photoURL' value='Your Image URL' />
                                 </div>
-                                <TextInput id='photoURL' type='text' placeholder='Image URL' name='photoURL' {...register('photoURL', { required: true })} />
+                                <TextInput id='photoURL' type='text' placeholder='Image URL' name='photoURL' {...register('photoURL', { required: false })} />
                                {errors.photoURL &&  <p className='text-red-600'>Image URl is required.</p>}
                             </div>
 

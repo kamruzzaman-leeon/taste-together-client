@@ -17,28 +17,30 @@ const SignIn = () => {
     const location = useLocation();
 
     const { register, handleSubmit, formState: { errors }, } = useForm();
-    const onSubmit = data => {
-        signIn(data.email, data.password)
-            .then(result => {
-                console.log(result)
-                Swal.fire({
-                    icon: "success",
-                    title: "successfully SignIn!",
-                    showConfirmButton: false,
-                    timer: 1000
-                });
-            })
-            .catch((error) => {
-                console.log(error)
-                Swal.fire({
-
-                    icon: "error",
-                    title: "Oops...",
-                    text: "Something went wrong!",
-                    showConfirmButton: false,
-                    timer: 1000
-                });
+    const onSubmit = async (data) => {
+        try {
+            await signIn(data.email, data.password)
+            navigate(location.state && location.state.from ? location.state.from : '/');
+            Swal.fire({
+                icon: "success",
+                title: "successfully SignIn!",
+                showConfirmButton: false,
+                timer: 1000
             });
+
+        } catch (error) {
+            console.log(error.message)         
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: error.message,
+                showConfirmButton: false,
+                timer: 1000
+            });
+        }
+        
+        
+        
     }
     return (
         <>
@@ -67,7 +69,8 @@ const SignIn = () => {
                                     <Label htmlFor='password1' value='Your password' />
                                 </div>
                                 <TextInput id='password1' type='password' name='password' placeholder='password' {...register('password', { required: true })} />
-                                {errors.password && <p className='text-red-600'>Password is required.</p>}
+                                {/* {errors.password && <p className='text-red-600'>Password is required.</p>} */}
+                                {errors.password && <p className='text-red-600'>Password is required</p>}
                             </div>
                             <div className='mx-auto'>
                                 <Button gradientDuoTone="purpleToBlue" type="submit">Sign In</Button>
