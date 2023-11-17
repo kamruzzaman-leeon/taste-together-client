@@ -1,17 +1,45 @@
+import { useContext } from 'react';
+import Swal from 'sweetalert2'
+import { AuthContext } from '../providers/AuthProvider';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 
 const SocialLogin = () => {
+
+    const {googleSignIn} =useContext(AuthContext);
+    const navigate = useNavigate();
+    const location = useLocation()
+
+
     const handleGoogleLogin=()=>{
-        console.log('google login');
+        // console.log('google login');
+        googleSignIn()
+        .then(() =>{
+           const redirectPath = location.state && location.state.from ? location.state.from : '/';
+           navigate(redirectPath);
+           Swal.fire({
+            
+            icon: "success",
+            title: "successfully SignIn with Google",
+            showConfirmButton: false,
+            timer: 1000
+          });
+
+        })
+        .catch(()=>{
+            Swal.fire({
+            
+                icon: "error",
+                title: "Oops...",
+                text: "Something went wrong!",
+                showConfirmButton: false,
+                timer: 1000
+              });
+        })
     }
     return (
         <div className='p-5'>
-            {/* <div className=''>Continue with</div> */}
             
-          {/* <div className='text-center'>
-          <button onClick={handleGoogleLogin} className="btn bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 text-white">Google</button>
-          
-          </div> */}
           <div className="flex items-center space-x-1">
 		<div className="flex-1 h-px sm:w-16 dark:bg-gray-700"></div>
 		<p className="px-3 text-sm dark:text-gray-400">Login with social accounts</p>
