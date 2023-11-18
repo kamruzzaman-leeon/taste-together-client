@@ -6,7 +6,6 @@ import { AuthContext } from "../../providers/AuthProvider";
 import { Controller, useForm } from "react-hook-form";
 import Datepicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import axios from "axios";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 
@@ -24,11 +23,12 @@ const AddFood = () => {
 
 
 
-    const onSubmit = async (data) => {
+    const onSubmit = async (data,e) => {
         try {
             // console.log(data);
 
             const addFood = { donator, email, photoURL, ...data }
+            e.target.reset();
             // console.log(addFood)
             const url = '/food'
             axiosSecure.post(url, addFood)
@@ -40,6 +40,7 @@ const AddFood = () => {
                         timer: 1000
                     });
                 })
+
         } catch (error) {
             console.log(error);
         }
