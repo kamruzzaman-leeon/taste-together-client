@@ -5,7 +5,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import SocialLogin from './SocialLogin';
 import { useContext } from 'react';
 import { AuthContext } from '../providers/AuthProvider';
-import axios from 'axios';
+
 import Swal from 'sweetalert2';
 import { useForm } from 'react-hook-form';
 

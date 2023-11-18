@@ -21,28 +21,28 @@ const Routes = createBrowserRouter([
             element:<Home></Home>
         },
         {
-            path:"/signin",
+            path:"signin",
             element:<SignIn></SignIn>,
                        
         },
         {
-            path:"/signup",
+            path:"signup",
             element:<SignUp></SignUp>
         },
         {
-            path:"/availablefood",
+            path:"availablefood",
             element:<AvailableFood></AvailableFood>,
         },
         {
-          path:"/addfood",
+          path:"addfood",
           element:<AddFood></AddFood>,
         },
         {
-          path:"/managefood",
+          path:"managefood",
           element:<ManageFood></ManageFood>,
         },
         {
-          path:"/myfoodred",
+          path:"/myfoodreq",
           element:<MyFoodReq></MyFoodReq>
         }
 
