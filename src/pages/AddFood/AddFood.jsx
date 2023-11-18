@@ -6,10 +6,14 @@ import { AuthContext } from "../../providers/AuthProvider";
 import { Controller, useForm } from "react-hook-form";
 import Datepicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import axios from "axios";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const AddFood = () => {
     const { user } = useContext(AuthContext);
-    const {displayName: donator ,email,photoURL}=user || {};
+    const axiosSecure = useAxiosSecure();
+    const { displayName: donator, email, photoURL } = user || {};
     const [startDate, setStartDate] = useState(new Date());
     const {
         register,
@@ -22,11 +26,20 @@ const AddFood = () => {
 
     const onSubmit = async (data) => {
         try {
-            console.log(data);
-            
-            const addFood ={donator, email,photoURL, ...data }
-            console.log(addFood)
+            // console.log(data);
 
+            const addFood = { donator, email, photoURL, ...data }
+            // console.log(addFood)
+            const url = '/food'
+            axiosSecure.post(url, addFood)
+                .then(res => {
+                    Swal.fire({
+                        icon: "success",
+                        title: "successfully Food Added!",
+                        showConfirmButton: false,
+                        timer: 1000
+                    });
+                })
         } catch (error) {
             console.log(error);
         }
@@ -88,9 +101,9 @@ const AddFood = () => {
                                     <p className="text-red-600">Food Quantity is required.</p>
                                 )}
                             </div>
-                            <div className="mb-2 w-full">
+                            <div className="mb-2 ">
                                 <Label value="Food Expired Date" />
-                                    <br />
+                                <br />
                                 <Controller
                                     control={control}
                                     name="fexpired"
@@ -102,6 +115,7 @@ const AddFood = () => {
                                                 setStartDate(date);
                                                 field.onChange(date);
                                             }}
+                                            popperPlacement="auto"
                                         />
                                     )}
                                 />
@@ -110,24 +124,40 @@ const AddFood = () => {
                                 )}
                             </div>
                         </div>
-                        <div>
-                            <div className="mb-2 block">
-                                <Label value="Food Pickup Locatio" />
+                        <div className="flex flex-col md:flex-row gap-5">
+
+                            <div className="mb-2 w-full">
+                                <Label value="Food Status" />
+
+                                <TextInput
+                                    type="text"
+                                    name="fstatus"
+                                    placeholder="available"
+                                    defaultValue={'available'}
+                                    readOnly
+                                    {...register("fstatus")}
+                                />
+                                {errors.fquantity && (
+                                    <p className="text-red-600">Food Quantity is required.</p>
+                                )}
                             </div>
-                            <TextInput
-                                type="text"
-                                placeholder="Food Pickup Location"
-                                name="fplocation"
-                                {...register("fplocation", { required: true })}
-                            />
-                            {errors.fplocation&& (
-                                <p className="text-red-600">Food pickup location is required.</p>
-                            )}
+                            <div className="mb-2 w-full">
+                                <Label value="Food Pickup Location" />
+
+                                <TextInput
+                                    type="text"
+                                    placeholder="Food Pickup Location"
+                                    name="fplocation"
+                                    {...register("fplocation", { required: true })}
+                                />
+                                {errors.fplocation && (
+                                    <p className="text-red-600">Food pickup location is required.</p>
+                                )}
+                            </div>
                         </div>
-                        <div>
-                            <div className="mb-2 block">
-                                <Label value="Additional info" />
-                            </div>
+                        <div className="mb-2 block">
+                            <Label value="Additional info" />
+
                             <Textarea
                                 type="text"
                                 placeholder="Additional info"
@@ -139,19 +169,19 @@ const AddFood = () => {
                             )}
                         </div>
 
+                 
 
-
-                        {/* button */}
-                        <div className="mx-auto">
-                            <Button gradientDuoTone="purpleToBlue" type="submit">
-                                Add Food
-                            </Button>
-                        </div>
-                    </form>
-                </Card>
-            </div>
-        </>
-    );
+                    {/* button */}
+                    <div className="mx-auto">
+                        <Button gradientDuoTone="purpleToBlue" type="submit">
+                            Add Food
+                        </Button>
+                    </div>
+                </form>
+            </Card>
+        </div >
+</>
+);
 };
 
 export default AddFood;
