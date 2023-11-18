@@ -39,7 +39,7 @@ const AuthProvider = ({ children }) => {
   const handleUpdateProfile = async (name, photo) => {
     try {
       setLoading(true);
-      const photo = photo || 'https://img.freepik.com/premium-vector/man-avatar-profile-picture-vector-illustration_268834-538.jpg?size=626&ext=jpg&uid=R125636826&ga=GA1.1.918993681.1699267925&semt=sph';
+      
       await updateProfile(auth.currentUser, {
         displayName: name,
         photoURL: photo,

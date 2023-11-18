@@ -20,7 +20,8 @@ const SignUp = () => {
         createUser( data.email, data.password)
             // eslint-disable-next-line no-unused-vars
             .then((result) => {
-                handleUpdateProfile(data.name, data.photoURL)
+                const photoURL = data.photoURL || 'https://img.freepik.com/premium-vector/man-avatar-profile-picture-vector-illustration_268834-538.jpg?size=626&ext=jpg&uid=R125636826&ga=GA1.1.918993681.1699267925&semt=sph';
+                handleUpdateProfile(data.name, photoURL)
                 navigate(location?.state ? location.state : "/")
                 // console.log(result)
                 Swal.fire({

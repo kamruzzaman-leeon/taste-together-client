@@ -24,7 +24,7 @@ const Footbar = () => {
                             <Footer.Title title="contact-Us" />
                             <Footer.LinkGroup col>
                                 <p>Hotline:<span> +880 123456779</span> </p>
-                                <p>Office Location <address>Banani C/A, Dhaka</address></p>
+                                <address>Office Location: <span>Banani C/A, Dhaka</span></address>
                             </Footer.LinkGroup>
                         </div>
 

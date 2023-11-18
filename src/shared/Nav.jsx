@@ -53,7 +53,8 @@ const Nav = () => {
               arrowIcon={false}
               inline
               label={
-                <Avatar alt="User settings" img={user.photoURL} rounded />
+                <Avatar alt={user?.displayName} img={user?.photoURL} rounded />
+                
               }
             >
               <Dropdown.Header>
