@@ -8,6 +8,7 @@ import Datepicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import Title from "../../shared/Title";
 
 const AddFood = () => {
     const { user } = useContext(AuthContext);
@@ -51,11 +52,10 @@ const AddFood = () => {
             <Helmet>
                 <title>Add Food | Taste Together</title>
             </Helmet>
-            <div className="container mx-auto p-10 border flex justify-center content-center border-red-500">
-                <Card className="w-11/12 lg:w-5/6">
-                    <h1 className="md:text-5xl text-center">Add Food</h1>
-                    <hr />
-
+            <div className="container mx-auto  px-10 py-20 ">
+            <Title>Add Food</Title>
+                <Card className="w-11/12 lg:w-5/6 mx-auto">
+                
                     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
                         {/* food Name */}
                         <div>
