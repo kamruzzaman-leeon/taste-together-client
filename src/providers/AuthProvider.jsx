@@ -14,7 +14,7 @@ const AuthProvider = ({ children }) => {
   const googleSignIn = async () => {
     setLoading(true)
     try {
-      await signInWithPopup(auth, googleProvider);
+     return await signInWithPopup(auth, googleProvider);
     } finally {
       setLoading(false);
     }
@@ -23,7 +23,7 @@ const AuthProvider = ({ children }) => {
     // console.log(email,password)
     setLoading(true)
     try {
-      await signInWithEmailAndPassword(auth, email, password);
+      return await signInWithEmailAndPassword(auth, email, password);
     } finally {
       setLoading(false);
     }
@@ -31,7 +31,7 @@ const AuthProvider = ({ children }) => {
   const createUser = async (email, password) => {
     setLoading(true)
     try {
-      await createUserWithEmailAndPassword(auth, email, password)
+      return await createUserWithEmailAndPassword(auth, email, password)
     } finally {
       setLoading(false);
     }
@@ -39,8 +39,8 @@ const AuthProvider = ({ children }) => {
   const handleUpdateProfile = async (name, photo) => {
     try {
       setLoading(true);
-      
-      await updateProfile(auth.currentUser, {
+
+      return await updateProfile(auth.currentUser, {
         displayName: name,
         photoURL: photo,
       });
@@ -50,7 +50,7 @@ const AuthProvider = ({ children }) => {
   };
   const logOut = async () => {
     setLoading(true)
-    await signOut(auth);
+    return await signOut(auth);
 
   };
   useEffect(() => {

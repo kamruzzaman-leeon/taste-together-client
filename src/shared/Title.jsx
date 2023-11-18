@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
 const Title = ({ children }) => {
-  console.log(children);
+//   console.log(children);
   return (
     <div className="relative w-11/12 mx-auto  my-10 border-s-8 border-blue-600 ps-10" >
       <h2 className={`text-5xl font-bold py-5 text-blue-600`}>{children}</h2>

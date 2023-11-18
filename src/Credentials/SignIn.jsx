@@ -8,6 +8,8 @@ import { AuthContext } from '../providers/AuthProvider';
 
 import Swal from 'sweetalert2';
 import { useForm } from 'react-hook-form';
+import useAxiosSecure from '../Hooks/useAxiosSecure';
+
 
 
 const SignIn = () => {
@@ -15,19 +17,32 @@ const SignIn = () => {
     const { signIn } = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
+    const axiosSecure=useAxiosSecure();
 
     const { register, handleSubmit, formState: { errors }, } = useForm();
-    const onSubmit = async (data) => {
+    const onSubmit = async (data,e) => {
         try {
-            await signIn(data.email, data.password)
-            navigate(location.state && location.state.from ? location.state.from : '/');
-            Swal.fire({
-                icon: "success",
-                title: "successfully SignIn!",
-                showConfirmButton: false,
-                timer: 1000
-            });
-
+            const {email,password}=data;
+            const result = await signIn(email, password)
+            // console.log(result);
+            const loggedInUser = result.user;
+            console.log(loggedInUser);
+            const user= {email};
+            axiosSecure.post('/jwt',user)
+            .then(res=>{
+                console.log(res.data)
+                if(res.data.success){
+                    navigate(location.state && location.state.from ? location.state.from : '/');
+                    Swal.fire({
+                        icon: "success",
+                        title: "successfully SignIn!",
+                        showConfirmButton: false,
+                        timer: 1000
+                    });
+                    e.target.reset()
+                }
+            })         
+            
         } catch (error) {
             console.log(error.message)         
             Swal.fire({

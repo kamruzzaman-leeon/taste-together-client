@@ -29,7 +29,7 @@ const AddFood = () => {
             // console.log(data);
 
             const addFood = { donator, email, photoURL, ...data }
-            e.target.reset();
+            
             // console.log(addFood)
             const url = '/food'
             axiosSecure.post(url, addFood)
@@ -40,6 +40,7 @@ const AddFood = () => {
                         showConfirmButton: false,
                         timer: 1000
                     });
+                    e.target.reset();
                 })
 
         } catch (error) {

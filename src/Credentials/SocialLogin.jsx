@@ -2,11 +2,13 @@ import { useContext } from 'react';
 import Swal from 'sweetalert2'
 import { AuthContext } from '../providers/AuthProvider';
 import { useLocation, useNavigate } from 'react-router-dom';
+import useAxiosSecure from '../Hooks/useAxiosSecure';
 
 
 const SocialLogin = () => {
 
     const {googleSignIn} =useContext(AuthContext);
+    const axiosSecure = useAxiosSecure();
     const navigate = useNavigate();
     const location = useLocation()
 
@@ -14,16 +16,25 @@ const SocialLogin = () => {
     const handleGoogleLogin=()=>{
         // console.log('google login');
         googleSignIn()
-        .then(() =>{
-           const redirectPath = location.state && location.state.from ? location.state.from : '/';
-           navigate(redirectPath);
-           Swal.fire({
-            
-            icon: "success",
-            title: "successfully SignIn with Google",
-            showConfirmButton: false,
-            timer: 1000
-          });
+        .then((result) =>{
+           
+          const loggedInUser = result.user;
+          const {email} = loggedInUser;
+          const user= {email};
+          axiosSecure.post('/jwt',user)
+          .then(res=>{
+              console.log(res.data)
+              if(res.data.success){
+                  navigate(location.state && location.state.from ? location.state.from : '/');
+                  Swal.fire({
+                      icon: "success",
+                      title: "successfully SignIn!",
+                      showConfirmButton: false,
+                      timer: 1000
+                  });
+                  
+              }
+          })      
 
         })
         .catch(()=>{
