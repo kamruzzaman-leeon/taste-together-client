@@ -55,7 +55,7 @@ const AddFood = () => {
             </Helmet>
             <div className="container mx-auto  px-10 py-20 ">
             <Title>Add Food</Title>
-                <Card className="w-11/12 lg:w-5/6 mx-auto">
+                <Card className="w-full md:w-11/12 lg:w-5/6 mx-auto">
                 
                     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
                         {/* food Name */}
