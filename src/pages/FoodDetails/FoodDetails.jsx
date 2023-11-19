@@ -134,10 +134,6 @@ const FoodDetails = () => {
                                     {...register("fimage", { required: true })}
                                 />
                             </div>
-                            {errors.fimage && (
-                                <p className="text-red-600">Food Image URL is required.</p>
-                            )}
-
                             <div>
                                 <div className="mb-2 block">
                                     <Label value="Food ID" />
@@ -196,9 +192,8 @@ const FoodDetails = () => {
                                 </div>
 
                                 <Controller
-
                                     control={control}
-                                    name="freqdate"
+                                    name="fReqDate"
                                     render={({ field }) => (
                                         <Datepicker
                                             showIcon
@@ -218,6 +213,7 @@ const FoodDetails = () => {
                                     )}
                                 />
 
+                                <input type="hidden" {...register('fReqDate')} value={startDate} />
                             </div>
 
                             <div>
@@ -261,7 +257,7 @@ const FoodDetails = () => {
                                         />
                                     )}
                                 />
-
+                                <input type="hidden" {...register('fexpired')} value={exDate} />
                             </div>
 
                             <div>
