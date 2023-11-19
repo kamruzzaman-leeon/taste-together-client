@@ -14,28 +14,20 @@ const SocialLogin = () => {
 
 
     const handleGoogleLogin=()=>{
-        // console.log('google login');
+        
         googleSignIn()
-        .then((result) =>{
-           
-          const loggedInUser = result.user;
-          const {email} = loggedInUser;
-          const user= {email};
-          axiosSecure.post('/jwt',user)
-          .then(res=>{
-              console.log(res.data)
-              if(res.data.success){
-                  navigate(location.state && location.state.from ? location.state.from : '/');
-                  Swal.fire({
-                      icon: "success",
-                      title: "successfully SignIn!",
-                      showConfirmButton: false,
-                      timer: 1000
-                  });
-                  
-              }
-          })      
-
+        .then(res=>{
+            const user = res.user;
+            console.log(user);
+            if(user){
+                navigate(location.state && location.state.from ? location.state.from : '/');
+                Swal.fire({
+                    icon: "success",
+                    title: "successfully SignIn!",
+                    showConfirmButton: false,
+                    timer: 1000
+                });
+            }
         })
         .catch(()=>{
             Swal.fire({

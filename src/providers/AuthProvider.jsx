@@ -2,12 +2,13 @@ import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWith
 import PropTypes from 'prop-types';
 import { createContext, useEffect, useState } from "react";
 import { auth, googleProvider } from '../firebase/firebase.config';
-import axios from "axios";
+import useAxiosSecure from "../Hooks/useAxiosSecure";
+
 
 export const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
-
+  const axiosSecure = useAxiosSecure();
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -20,14 +21,16 @@ const AuthProvider = ({ children }) => {
     }
   };
   const signIn = async (email, password) => {
-    // console.log(email,password)
+    
     setLoading(true)
     try {
-      return await signInWithEmailAndPassword(auth, email, password);
+      return signInWithEmailAndPassword(auth, email, password);
     } finally {
       setLoading(false);
     }
-  };
+    };    
+    
+
   const createUser = async (email, password) => {
     setLoading(true)
     try {
@@ -55,17 +58,28 @@ const AuthProvider = ({ children }) => {
   };
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, currentUser => {
+      const userEmail = currentUser?.email || user?.email;
+      const loggedUser = {email:userEmail}
       setUser(currentUser)
-      // if(currentUser){
-
-      // }
-      // axios.post()
+      if(currentUser){        
+        axiosSecure.post('/jwt',loggedUser)
+        .then(res=>{
+          // console.log('token response',res.data)
+        })
+      } 
+      else{
+        axiosSecure.post('/logout',loggedUser)
+        .then(res=>{
+          console.log(res.data)
+        })
+      } 
+       
       setLoading(false);
       return () => {
         return unsubscribe();
       }
     })
-  }, [])
+  }, [axiosSecure,user?.email])
 
   const authInfo = {
     user,
