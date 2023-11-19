@@ -62,7 +62,7 @@ const Nav = () => {
                 <span className="block truncate text-sm font-medium">{user?.email}</span>
               </Dropdown.Header>
               <Dropdown.Item><Link to="/addfood">Add Food</Link></Dropdown.Item>
-              <Dropdown.Item><Link to="/managefood">Manger My Foods</Link> </Dropdown.Item>
+              <Dropdown.Item><Link to="/managefood">Manage My Foods</Link> </Dropdown.Item>
               <Dropdown.Item><Link to="/myfoodreq">My Food Request</Link></Dropdown.Item>
               <Dropdown.Divider />
               <Dropdown.Item onClick={() => handleLogout()}>Sign out</Dropdown.Item>
