@@ -8,14 +8,12 @@ import Loading from "../../shared/Loading";
 
 
 const AvailableFood = () => {
-    const data = useLoaderData();
+    const availableData = useLoaderData();
     // console.log(data);
     const { loading } = useContext(AuthContext);
     if (loading) {
       return <Loading></Loading>;
     }
-    // Filter data where fstatus is "available"
-    const availableData = data.filter((food) => food.fstatus === "available");
     // console.log(availableData)
     return (
 
