@@ -22,7 +22,7 @@ const Routes = createBrowserRouter([
         {
             path:"/",
             element:<Home></Home>,
-            loader:()=>fetch(`${url}/fFood`)
+            
         },
         {
             path:"signin",
@@ -41,7 +41,8 @@ const Routes = createBrowserRouter([
         },
         {
           path:"FoodDetails/:id",
-          element:<FoodDetails></FoodDetails>
+          element:<PrivateRoute><FoodDetails></FoodDetails></PrivateRoute>,
+          loader:({params})=>fetch(`${url}/FoodDetails/${params.id}`)
           
         },
         {
@@ -53,7 +54,7 @@ const Routes = createBrowserRouter([
           element:<ManageFood></ManageFood>,
         },
         {
-          path:"/myfoodreq",
+          path:"myfoodreq",
           element:<MyFoodReq></MyFoodReq>
         }
 

@@ -4,6 +4,7 @@ import Banner from '../Banner/Banner';
 import { Helmet } from 'react-helmet';
 import { AuthContext } from '../../../providers/AuthProvider';
 import FoodDetails from '../../FoodDetails/FoodDetails';
+import FeaturedFood from '../../FeaturedFood/FeaturedFood';
 
 const Home = () => {
     const { loading } = useContext(AuthContext);
@@ -16,7 +17,8 @@ const Home = () => {
                 <title>Home | TasteTogether</title>
             </Helmet>
              <Banner></Banner>
-             <FoodDetails></FoodDetails>
+             <FeaturedFood></FeaturedFood>
+             {/* <FoodDetails></FoodDetails> */}
              
         </>
     );
