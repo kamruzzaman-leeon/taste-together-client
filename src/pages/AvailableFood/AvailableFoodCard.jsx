@@ -7,9 +7,9 @@ const AvailableFoodCard = ({ food }) => {
     const { Aditionalinfo, donator, fimage, fname, fplocation, fquantity, photoURL, _id } = food;
     const { loading } = useContext(AuthContext);
     return (
-       <div>
-         <Card className="w-full" imgSrc={fimage} horizontal>
-            <div>
+       <div className='place-items-stretch'>
+         <Card className="h-full" imgSrc={fimage} horizontal>
+            <div className='flex justify-start'>
                 <Avatar img={photoURL} rounded>
                     <div className="space-y-1 font-medium dark:text-white">
                         <div>{donator}</div>
@@ -23,7 +23,7 @@ const AvailableFoodCard = ({ food }) => {
             <p className="font-normal text-gray-700 dark:text-gray-400">
                 {fplocation}
             </p>
-            <div className="text-sm text-gray-500 dark:text-gray-400"> {Aditionalinfo}</div>
+            <div className="text-sm text-gray-500 dark:text-gray-400 h-full"> {Aditionalinfo}</div>
 
 
             <hr />
