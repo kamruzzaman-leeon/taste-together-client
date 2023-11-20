@@ -38,8 +38,7 @@ const FoodDetails = () => {
     const {
         register,
         control,
-        handleSubmit,
-        getValues,
+        handleSubmit,        
         formState: { errors },
     } = useForm();
     const [startDate, setStartDate] = useState(new Date());
