@@ -22,7 +22,7 @@ const AvailableFoodCard = ({ food }) => {
     const formattedDate = expirationDate.toLocaleString("en-US", options);
     const { loading } = useContext(AuthContext);
     return (
-       <div className='place-items-stretch'>
+       <div className='place-items-stretch transform transition-transform hover:scale-95'>
          <Card className="h-full" imgSrc={fimage} horizontal>
             <div className='flex justify-start'>
                 <Avatar img={photoURL} rounded>

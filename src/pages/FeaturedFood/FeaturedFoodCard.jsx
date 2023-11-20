@@ -21,9 +21,9 @@ const FeaturedFoodCard = ({ food }) => {
     // Format the date
     const formattedDate = expirationDate.toLocaleString("en-US", options);
     return (
-        <div className='place-items-stretch'>
+        <div className='place-items-stretch transform transition-transform hover:scale-95'>
             <Card className="h-full" imgSrc={fimage} horizontal>
-                <div className='flex justify-start'>
+                <div className='flex justify-start '>
                     <Avatar img={photoURL} rounded>
                         <div className="space-y-1 font-medium dark:text-white">
                             <div>{donator}</div>

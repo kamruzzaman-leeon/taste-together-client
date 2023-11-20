@@ -5,6 +5,8 @@ import { Helmet } from 'react-helmet';
 import { AuthContext } from '../../../providers/AuthProvider';
 import FoodDetails from '../../FoodDetails/FoodDetails';
 import FeaturedFood from '../../FeaturedFood/FeaturedFood';
+import AboutUs from '../AboutUs/AboutUs';
+import CountDownItem from '../CountDownItem/CountDownItem';
 
 const Home = () => {
     const { loading } = useContext(AuthContext);
@@ -18,7 +20,8 @@ const Home = () => {
             </Helmet>
              <Banner></Banner>
              <FeaturedFood></FeaturedFood>
-             {/* <FoodDetails></FoodDetails> */}
+             <CountDownItem></CountDownItem>
+             <AboutUs></AboutUs>
              
         </>
     );
