@@ -3,7 +3,7 @@ import CountUp from 'react-countup';
 
 const CountDownItem = () => {
     return (
-        <div className='container mx-auto bg-slate-50 p-10 flex justify-around'>
+        <div className='container mx-auto bg-slate-50 p-10 flex flex-col md:flex-row gap-5 justify-around'>
             <div className='card p-10 text-center shadow-lg'>
                 <CountUp start={0} end={4200} delay={2}>
                     {({ countUpRef }) => (
