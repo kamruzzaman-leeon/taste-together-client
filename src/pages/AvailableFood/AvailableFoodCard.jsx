@@ -5,7 +5,7 @@ import { AuthContext } from '../../providers/AuthProvider';
 import { Link } from 'react-router-dom';
 
 const AvailableFoodCard = ({ food }) => {
-    const { Aditionalinfo, donator, fimage, fname,fexpired, fplocation, fquantity, photoURL, _id } = food;
+    const { Aditionalinfo, donator, fimage, fstatus, fname,fexpired, fplocation, fquantity, photoURL, _id } = food;
     const expirationDate = new Date(fexpired);
 
     // Options for formatting the date
@@ -45,7 +45,6 @@ const AvailableFoodCard = ({ food }) => {
             <span className='font-normal text-gray-500 dark:text-gray-400'>Expires:</span>  { formattedDate}
             </p>
             <div className="text-sm text-gray-500 dark:text-gray-400 h-full"> {Aditionalinfo}</div>
-
 
             <hr />
             <div className="mx-auto">

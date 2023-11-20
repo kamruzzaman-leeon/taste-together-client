@@ -9,13 +9,14 @@ import "react-datepicker/dist/react-datepicker.css";
 import { AuthContext } from "../../providers/AuthProvider";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 const FoodDetails = () => {
     const { user } = useContext(AuthContext);
     const axiosSecure= useAxiosSecure();
     const { email: reqEmail } = user;
     const fDetails = useLoaderData();
-    const { Aditionalinfo, donator, email: donatorEmail, fimage, fname, fexpired, fplocation, fquantity, photoURL, _id: foodId } = fDetails;
+    const { Aditionalinfo, donator, email: donatorEmail,fstatus, fimage, fname, fexpired, fplocation, fquantity, photoURL, _id: foodId } = fDetails;
 
     const expirationDate = new Date(fexpired);
 
@@ -49,12 +50,17 @@ const FoodDetails = () => {
 
     const onSubmit = async (data) => {
         // console.log(errors)
-        const foodReq = {...data}
-        
+        const foodReq = { ...data}       
        
         axiosSecure.post('/foodreq',foodReq)
         .then(res=>{
-            console.log(res.data)
+            // console.log(res.data)
+            Swal.fire({
+                icon: "success",
+                title: "successfully Food Added!",
+                showConfirmButton: false,
+                timer: 1000
+            });
         })
         setOpenModal(false); 
     };
@@ -227,6 +233,7 @@ const FoodDetails = () => {
                                 />
 
                                 <input type="hidden" {...register('fReqDate')} value={startDate} />
+                                <input type="hidden" {...register('fstatus')}/>
                             </div>
 
                             <div>
