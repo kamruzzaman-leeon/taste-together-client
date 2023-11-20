@@ -72,7 +72,7 @@ const AuthProvider = ({ children }) => {
       else{
         axiosSecure.post('/logout',loggedUser)
         .then(res=>{
-          console.log(res.data)
+          // console.log(res.data)
         })
       } 
        

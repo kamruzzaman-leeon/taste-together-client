@@ -2,14 +2,17 @@ import { Helmet } from "react-helmet";
 import Title from "../../shared/Title";
 import { Link, useLoaderData } from "react-router-dom";
 import { Avatar, Button, Label, Modal, TextInput, Textarea } from "flowbite-react";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import Datepicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { AuthContext } from "../../providers/AuthProvider";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import axios from "axios";
 
 const FoodDetails = () => {
     const { user } = useContext(AuthContext);
+    const axiosSecure= useAxiosSecure();
     const { email: reqEmail } = user;
     const fDetails = useLoaderData();
     const { Aditionalinfo, donator, email: donatorEmail, fimage, fname, fexpired, fplocation, fquantity, photoURL, _id: foodId } = fDetails;
@@ -42,13 +45,23 @@ const FoodDetails = () => {
     const [exDate, setExDate] = useState(expirationDate);
     const [openModal, setOpenModal] = useState(false);
 
-    const onSubmit = async () => {
-        // console.log(errors)
-        const formData = getValues(); // Use getValues to get the form data
-        console.log('Form submitted:', formData)
+    
 
-        setOpenModal(false); // Close the modal after submission
+    const onSubmit = async (data) => {
+        // console.log(errors)
+        const foodReq = {...data}
+        
+       
+        axiosSecure.post('/foodreq',foodReq)
+        .then(res=>{
+            console.log(res.data)
+        })
+        setOpenModal(false); 
     };
+
+    
+           
+    
 
     return (
         <>
