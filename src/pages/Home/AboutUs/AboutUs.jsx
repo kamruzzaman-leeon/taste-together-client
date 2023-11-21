@@ -1,4 +1,4 @@
-import React from 'react';
+
 import Title from '../../../shared/Title';
 
 const AboutUs = () => {
@@ -6,7 +6,7 @@ const AboutUs = () => {
        <div className='container mx-auto'>
        <Title>About Us</Title>
         <div className='card w-auto border shadow-lg transform transition-transform hover:scale-95 hover:opacity-80  p-10'>
-            <h1 className='text-5xl font-bold my-10'>TasteTogether: Connecting Food Enthusiasts through Shared Experiences</h1>
+            <h1 className='tex-3xl md:text-5xl font-bold my-10'>TasteTogether: Connecting Food Enthusiasts through Shared Experiences</h1>
             <p className='text-justify'><span className='text-blue-600'>TasteTogether</span> is a dynamic online platform based in Bangladesh, committed to fostering a community of food enthusiasts who love to share and savor delicious homemade meals. Our mission is to create a space where individuals can come together to share their extra food, reduce food waste, and connect through the joy of culinary experiences.
 
             <br/><br/>

@@ -44,8 +44,8 @@ const Banner = () => {
           data.length &&
           data.map((slide) => (
             <SwiperSlide key={slide._id}>
-              <div className='w-full h-1/2'>
-                <img src={slide.image} alt="slide" className=' object-cover' />
+              <div>
+                <img src={slide.image} alt="slide" className='max-h-[500px] w-full object-cover' />
               </div>
             </SwiperSlide>
           ))}
