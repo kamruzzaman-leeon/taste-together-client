@@ -9,10 +9,12 @@ import "react-datepicker/dist/react-datepicker.css";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import Title from "../../shared/Title";
+import { useNavigate } from "react-router-dom";
 
 const AddFood = () => {
     const { user } = useContext(AuthContext);
     const axiosSecure = useAxiosSecure();
+    const navigate = useNavigate(); 
     const { displayName: donator, email, photoURL } = user || {};
     const [startDate, setStartDate] = useState(new Date());
     const {
@@ -24,23 +26,30 @@ const AddFood = () => {
 
 
 
-    const onSubmit = async (data,e) => {
+    const onSubmit = async (data, e) => {
         try {
             // console.log(data);
 
             const addFood = { donator, email, photoURL, ...data }
-            
+
             // console.log(addFood)
             const url = '/food'
             axiosSecure.post(url, addFood)
                 .then(res => {
-                    Swal.fire({
-                        icon: "success",
-                        title: "successfully Food Added!",
-                        showConfirmButton: false,
-                        timer: 1000
-                    });
-                    e.target.reset();
+                    console.log(res)
+                    if (res.data.insertedId) {
+                        
+                        Swal.fire({
+                            icon: "success",
+                            title: "successfully Food Added!",
+                            showConfirmButton: false,
+                            timer: 1000
+                        })
+                        
+                        e.target.reset();
+                        navigate('/availablefood')
+                    }
+
                 })
 
         } catch (error) {
@@ -54,9 +63,9 @@ const AddFood = () => {
                 <title>Add Food | Taste Together</title>
             </Helmet>
             <div className="container mx-auto  px-10 py-20 ">
-            <Title>Add Food</Title>
+                <Title>Add Food</Title>
                 <Card className="w-full md:w-11/12 lg:w-5/6 mx-auto">
-                
+
                     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
                         {/* food Name */}
                         <div>
@@ -171,19 +180,19 @@ const AddFood = () => {
                             )}
                         </div>
 
-                 
 
-                    {/* button */}
-                    <div className="mx-auto">
-                        <Button gradientDuoTone="purpleToBlue" type="submit">
-                            Add Food
-                        </Button>
-                    </div>
-                </form>
-            </Card>
-        </div >
-</>
-);
+
+                        {/* button */}
+                        <div className="mx-auto">
+                            <Button gradientDuoTone="purpleToBlue" type="submit">
+                                Add Food
+                            </Button>
+                        </div>
+                    </form>
+                </Card>
+            </div >
+        </>
+    );
 };
 
 export default AddFood;
