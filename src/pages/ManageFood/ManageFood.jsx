@@ -17,10 +17,9 @@ const ManageFood = () => {
                 const url = `/food?email=${user?.email}`;
                 const response = await axiosSecure.get(url);
                 const myFood = response.data;
-                // console.log(myFood);
                 setFood(myFood);
-                // console.log('food', myFood); 
-            } catch (error) {
+               }
+               catch (error) {
                 console.log(error);
             }
         };

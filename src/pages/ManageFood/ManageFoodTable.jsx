@@ -2,10 +2,12 @@ import { flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-tabl
 import PropTypes from 'prop-types'
 
 import { Button, Table } from 'flowbite-react';
+import useAxiosSecure from '../../Hooks/useAxiosSecure';
+import Swal from 'sweetalert2';
 
 
 const ManageFoodTable = ({ data }) => {
-
+    const axiosSecure=useAxiosSecure();
    console.log(data)
 
     const columns = [
@@ -37,8 +39,39 @@ const ManageFoodTable = ({ data }) => {
 
     const table = useReactTable({ data, columns, getCoreRowModel: getCoreRowModel(), })
     const handleDelete = (id) => {
-        // Handle delete logic
-        console.log(`Deleting item with ID: ${id}`);
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'You will not be able to recover this food item!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosSecure.delete(`/deletefood/${id}`)
+                    .then(res => {
+                        console.log(res.data);
+                        if (res.data.deletedCount > 0) {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Successfully Food Deleted!',
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                            // Optionally, you might want to fetch updated data here and update the state
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error deleting food:', error);
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Something went wrong while deleting the food item!'
+                        });
+                    });
+            }
+        });
     };
 
     const handleManage = (id) => {
@@ -58,7 +91,7 @@ const ManageFoodTable = ({ data }) => {
                         <Table.Head key={headerGroup.id}>
                             {
                                 headerGroup.headers.map(header => (
-                                    <Table.HeadCell key={header.id}>
+                                    <Table.HeadCell key={header.id} className=''>
                                         {header.column.columnDef.header}
                                     </Table.HeadCell>
                                 ))
