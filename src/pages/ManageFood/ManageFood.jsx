@@ -3,32 +3,43 @@ import Title from '../../shared/Title';
 import { useContext, useState } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
-import { useTable } from 'react-table';
+import { useEffect } from 'react';
+import ManageFoodTable from './ManageFoodTable'
 
 const ManageFood = () => {
     const axiosSecure=useAxiosSecure();
     const {user} = useContext(AuthContext);
-    
-    const url =`/food?email=${user?.email}`;
-    axiosSecure.get(url)
-    .then(res=>{
-        // console.log(res.data)
-        const myFood=res.data;
-        console.log(myFood)
-        
-        
+    const [food,setFood]=useState([])
 
-    })
-    .catch(error=>console.log(error))
+    useEffect(() => {
+        const fetchFoodData = async () => {
+            try {
+                const url = `/food?email=${user?.email}`;
+                const response = await axiosSecure.get(url);
+                const myFood = response.data;
+                // console.log(myFood);
+                setFood(myFood);
+                // console.log('food', myFood); 
+            } catch (error) {
+                console.log(error);
+            }
+        };
+    
+      
+        fetchFoodData();
+    }, [axiosSecure, user?.email]);
+    
+
+
     
     return (
         <>
             <Helmet>
-                <title>Manage My Food| TasteTogether</title>
+                <title>Manage My Food | TasteTogether</title>
             </Helmet>
             <div className="container mx-auto p-5">           
                 {
-                    
+                    <ManageFoodTable data={food}></ManageFoodTable>
                 }                
           </div>
         </>
