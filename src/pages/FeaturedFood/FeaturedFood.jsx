@@ -16,7 +16,7 @@ const FeaturedFood = () => {
 
         axios.get(`${url}/fFood`)
             .then(res => {
-                console.log(res.data);
+                // console.log(res.data);
                 setFFood(res.data); // Set the fetched data in state
             })
             .catch(error => {
@@ -27,10 +27,10 @@ const FeaturedFood = () => {
     return (
 
 
-        <div className="container mx-auto p-5">
+        <div className="container mx-auto ">
             <Title>Feature Food</Title>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 p-5 gap-5">
 
                 {fFood.map((food) => <FeaturedFoodCard key={food._id} food={food}></FeaturedFoodCard>)}
 

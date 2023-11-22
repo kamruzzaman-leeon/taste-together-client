@@ -4,11 +4,18 @@ import PropTypes from 'prop-types'
 import { Button, Table } from 'flowbite-react';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
+import { useEffect, useState } from 'react';
 
 
-const ManageFoodTable = ({ data }) => {
-    const axiosSecure=useAxiosSecure();
-   console.log(data)
+const ManageFoodTable = ({initialData}) => {
+    
+    const axiosSecure = useAxiosSecure();
+    // console.log('f',initialData)
+    const [data, setData] = useState(initialData);
+    useEffect(() => {
+        
+        setData(initialData);
+      }, [initialData]);
 
     const columns = [
         {
@@ -59,8 +66,9 @@ const ManageFoodTable = ({ data }) => {
                                 showConfirmButton: false,
                                 timer: 1500
                             });
-                            // Optionally, you might want to fetch updated data here and update the state
-                        }
+                            const updatedData = data.filter(item => item._id !== id);
+                            setData(updatedData);
+                           }
                     })
                     .catch(error => {
                         console.error('Error deleting food:', error);
@@ -122,7 +130,7 @@ const ManageFoodTable = ({ data }) => {
     );
 };
 ManageFoodTable.propTypes = {
-    data: PropTypes.array
+    initialData: PropTypes.array
 }
 
 export default ManageFoodTable;

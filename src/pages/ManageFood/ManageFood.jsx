@@ -36,9 +36,10 @@ const ManageFood = () => {
             <Helmet>
                 <title>Manage My Food | TasteTogether</title>
             </Helmet>
+            <Title>My Food</Title>
             <div className="container mx-auto p-5">           
                 {
-                    <ManageFoodTable data={food}></ManageFoodTable>
+                    <ManageFoodTable initialData={food}></ManageFoodTable>
                 }                
           </div>
         </>
