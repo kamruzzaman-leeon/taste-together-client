@@ -4,6 +4,7 @@ const ManageFoodTable = ({data}) => {
     return (
         <div>
             
+            
         </div>
     );
 };
