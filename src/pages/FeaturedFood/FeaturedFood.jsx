@@ -16,7 +16,7 @@ const FeaturedFood = () => {
 
         axios.get(`${url}/fFood`)
             .then(res => {
-                // console.log(res.data);
+                console.log(res.data);
                 setFFood(res.data); // Set the fetched data in state
             })
             .catch(error => {

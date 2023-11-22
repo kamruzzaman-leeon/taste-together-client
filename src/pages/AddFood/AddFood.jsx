@@ -29,7 +29,7 @@ const AddFood = () => {
     const onSubmit = async (data, e) => {
         try {
             // console.log(data);
-
+            data.fquantity = parseInt(data.fquantity, 10);
             const addFood = { donator, email, photoURL, ...data }
 
             // console.log(addFood)
@@ -135,9 +135,9 @@ const AddFood = () => {
                                 )}
                             </div>
                         </div>
-                        <div className="flex flex-col md:flex-row gap-5">
+                        <div >
 
-                            <div className="mb-2 w-full">
+                            {/* <div className="mb-2 w-full">
                                 <Label value="Food Status" />
 
                                 <TextInput
@@ -151,7 +151,7 @@ const AddFood = () => {
                                 {errors.fquantity && (
                                     <p className="text-red-600">Food Quantity is required.</p>
                                 )}
-                            </div>
+                            </div> */}
                             <div className="mb-2 w-full">
                                 <Label value="Food Pickup Location" />
 
@@ -180,7 +180,7 @@ const AddFood = () => {
                             )}
                         </div>
 
-
+                        <input type="hidden" {...register('fstatus')} value={'available'} />
 
                         {/* button */}
                         <div className="mx-auto">
