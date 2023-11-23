@@ -1,6 +1,5 @@
 import { flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table';
 import PropTypes from 'prop-types'
-
 import { Button, Table } from 'flowbite-react';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
@@ -86,22 +85,19 @@ const ManageFoodTable = ({ initialData }) => {
     };
 
     const handleManage = (id) => {
-        
+        navigate(`/othersreq/${id}`)
         console.log(`Managing item with ID: ${id}`);
     };
 
     const handleUpdate = (id) => {
-
-        navigate(`/updatefood/${id}`);
+        navigate(`/updatefood/${id}`);   
         
-
-         
-        console.log(`Updating item with ID: ${id}`);
+        // console.log(`Updating item with ID: ${id}`);
     };
     return (
         <div className='container relative overflow-x-auto mx-auto'>
             {/* <dev><Link to="/addfood"><Button>Add Food</Button></Link></dev> */}
-            <Table hoverable striped className='w-11/12 mx-auto text-sm'>
+            <Table hoverable striped className='w-auto mx-auto text-sm'>
                 {
                     table.getHeaderGroups().map(headerGroup => (
                         <Table.Head key={headerGroup.id}>

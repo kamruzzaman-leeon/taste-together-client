@@ -7,12 +7,12 @@ import SignUp from "../Credentials/SignUp";
 import AvailableFood from "../pages/AvailableFood/AvailableFood";
 import AddFood from "../pages/AddFood/AddFood";
 import ManageFood from "../pages/ManageFood/ManageFood";
-import MyFoodReq from "../pages/MyFoodReq/MyFoodReq";
 import PrivateRoute from "./PrivateRoute";
 import FoodDetails from "../pages/FoodDetails/FoodDetails";
-import OtherFoodReq from "../pages/OtherFoodReq/OtherFoodReq";
 import UpdateFood from "../pages/UpdateFood/UpdateFood";
-import { linkWithCredential } from "firebase/auth";
+import FoodReqSend from "../pages/Reqfood/FoodReqSend";
+
+
 
 const url = "http://localhost:5000";
 
@@ -62,13 +62,11 @@ const Routes = createBrowserRouter([
           loader:({params})=>fetch(`${url}/FoodDetails/${params.id}`)
         },
         {
-          path:"otherfoodreq",
-          element:<OtherFoodReq></OtherFoodReq>
-        },
-        {
-          path:"myfoodreq",
-          element:<MyFoodReq></MyFoodReq>
+          path:"/foodreqsend",
+          element:<FoodReqSend></FoodReqSend>
         }
+        
+        
 
 
       

@@ -63,7 +63,7 @@ const Nav = () => {
               </Dropdown.Header>
               <Dropdown.Item><Link to="/addfood">Add Food</Link></Dropdown.Item>
               <Dropdown.Item><Link to="/managefood">Manage My Foods</Link> </Dropdown.Item>
-              <Dropdown.Item><Link to="/myfoodreq">My Food Request</Link></Dropdown.Item>
+              <Dropdown.Item><Link to="/foodreqsend">My Food Request</Link></Dropdown.Item>
               <Dropdown.Divider />
               <Dropdown.Item onClick={() => handleLogout()}>Sign out</Dropdown.Item>
             </Dropdown>

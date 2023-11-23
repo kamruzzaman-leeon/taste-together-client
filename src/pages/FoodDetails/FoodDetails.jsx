@@ -277,7 +277,7 @@ const FoodDetails = () => {
                                     )}
                                 />
                                 <input type="hidden" {...register('fexpired')} value={exDate} />
-                                <input type="hidden" {...register('fstatus')}/>
+                                <input type="hidden" {...register('fstatus')} value={'pending'}/>
                             </div>
 
                             {/* <div>
