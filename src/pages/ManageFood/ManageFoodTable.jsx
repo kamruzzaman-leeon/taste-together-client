@@ -5,7 +5,7 @@ import { Button, Table } from 'flowbite-react';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 const ManageFoodTable = ({ initialData }) => {
@@ -31,16 +31,17 @@ const ManageFoodTable = ({ initialData }) => {
 
         {
             header: "FOOD EXPIRE DATE",
-            accessorKey: "fexpired"
+            accessorKey: "fexpired",
+            
         },
         {
             header: "ACTION",
             cell: ({ row }) => (
-                <div className='flex flex-col md:flex-row gap-2'>
+                <tr className='flex flex-col md:flex-row gap-2'>
                     <Button color="warning" onClick={() => handleUpdate(row.original._id)}>Update</Button>
                     <Button color="purple" onClick={() => handleManage(row.original._id)}>Manage</Button>
                     <Button color="failure" onClick={() => handleDelete(row.original._id)}>Delete</Button>
-                </div>
+                </tr>
             ),
         }
 
@@ -98,11 +99,13 @@ const ManageFoodTable = ({ initialData }) => {
         console.log(`Updating item with ID: ${id}`);
     };
     return (
-        <div className='container'>
-            <Table hoverable striped className='w-auto mx-auto'>
+        <div className='container relative overflow-x-auto mx-auto'>
+            {/* <dev><Link to="/addfood"><Button>Add Food</Button></Link></dev> */}
+            <Table hoverable striped className='w-11/12 mx-auto text-sm'>
                 {
                     table.getHeaderGroups().map(headerGroup => (
                         <Table.Head key={headerGroup.id}>
+                            
                             {
                                 headerGroup.headers.map(header => (
                                     <Table.HeadCell key={header.id} className=''>

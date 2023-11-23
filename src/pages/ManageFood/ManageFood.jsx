@@ -37,7 +37,7 @@ const ManageFood = () => {
                 <title>Manage My Food | TasteTogether</title>
             </Helmet>
             <Title>My Food</Title>
-            <div className="container mx-auto p-5">           
+            <div className="container mx-auto">           
                 {
                     <ManageFoodTable initialData={food}></ManageFoodTable>
                 }                

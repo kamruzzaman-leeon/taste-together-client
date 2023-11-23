@@ -21,7 +21,6 @@ const UpdateFood = () => {
     const expirationDate = new Date(fexpired);
     // Options for formatting the date
     const options = {
-        timeZone: 'Asia/Dhaka',
         year: "numeric",
         month: "long",
         day: "numeric",
@@ -31,10 +30,9 @@ const UpdateFood = () => {
     };
     // Format the date
     const formattedDate = expirationDate.toLocaleString("en-US", options);
-    console.log(formattedDate)
+    console.log('format',formattedDate)
 
     const axiosSecure = useAxiosSecure();
-    
     const navigate = useNavigate()
     // console.log(location, data)
     const {
@@ -52,21 +50,21 @@ const UpdateFood = () => {
             data.fquantity = parseInt(data.fquantity, 10);
             const updateFood = {_id,fstatus,...data}
             console.log(updateFood)
-            const url = '/food'
+            const url = `/updatefood/${_id}`
             axiosSecure.put(url, updateFood)
                 .then(res => {
-                    console.log(res)
-                    if (res.data.insertedId) {
-                        console.log(res.data.insertedId)
+                    console.log(res.data)
+                    if (res.data.modifiedCount>0) {
+                        console.log(res.data.modifiedCount)
                         Swal.fire({
                             icon: "success",
                             title: "successfully Food Added!",
                             showConfirmButton: false,
                             timer: 1000
                         })
-                        
-                      
                         navigate('/managefood')
+                      
+                        
                     }
 
                 })
