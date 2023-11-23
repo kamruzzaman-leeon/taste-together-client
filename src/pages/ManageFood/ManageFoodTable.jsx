@@ -5,23 +5,25 @@ import { Button, Table } from 'flowbite-react';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
-const ManageFoodTable = ({initialData}) => {
-    
+const ManageFoodTable = ({ initialData }) => {
+
     const axiosSecure = useAxiosSecure();
     // console.log('f',initialData)
     const [data, setData] = useState(initialData);
+    const navigate = useNavigate()
     useEffect(() => {
-        
+
         setData(initialData);
-      }, [initialData]);
+    }, [initialData]);
 
     const columns = [
         {
             header: "SERIAL",
             cell: ({ row }) => row.index + 1,
-          },
+        },
         {
             header: "FOOD NAME",
             accessorKey: "fname"
@@ -37,7 +39,7 @@ const ManageFoodTable = ({initialData}) => {
                 <div className='flex flex-col md:flex-row gap-2'>
                     <Button color="warning" onClick={() => handleUpdate(row.original._id)}>Update</Button>
                     <Button color="purple" onClick={() => handleManage(row.original._id)}>Manage</Button>
-                    <Button  color="failure" onClick={() => handleDelete(row.original._id)}>Delete</Button>
+                    <Button color="failure" onClick={() => handleDelete(row.original._id)}>Delete</Button>
                 </div>
             ),
         }
@@ -68,7 +70,7 @@ const ManageFoodTable = ({initialData}) => {
                             });
                             const updatedData = data.filter(item => item._id !== id);
                             setData(updatedData);
-                           }
+                        }
                     })
                     .catch(error => {
                         console.error('Error deleting food:', error);
@@ -83,12 +85,16 @@ const ManageFoodTable = ({initialData}) => {
     };
 
     const handleManage = (id) => {
-        // Handle manage logic
+        
         console.log(`Managing item with ID: ${id}`);
     };
 
     const handleUpdate = (id) => {
-        // Handle update logic
+
+        navigate(`/updatefood/${id}`);
+        
+
+         
         console.log(`Updating item with ID: ${id}`);
     };
     return (
@@ -105,9 +111,9 @@ const ManageFoodTable = ({initialData}) => {
                                 ))
                             }
                         </Table.Head>
-                            ))
-                        }
-               <Table.Body  className="divide-y">
+                    ))
+                }
+                <Table.Body className="divide-y">
 
                     {
                         table.getRowModel().rows.map(row => (
@@ -122,7 +128,7 @@ const ManageFoodTable = ({initialData}) => {
                             </Table.Row>
                         ))
                     }
-                
+
                 </Table.Body>
             </Table>
 

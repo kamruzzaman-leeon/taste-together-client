@@ -12,6 +12,7 @@ import PrivateRoute from "./PrivateRoute";
 import FoodDetails from "../pages/FoodDetails/FoodDetails";
 import OtherFoodReq from "../pages/OtherFoodReq/OtherFoodReq";
 import UpdateFood from "../pages/UpdateFood/UpdateFood";
+import { linkWithCredential } from "firebase/auth";
 
 const url = "http://localhost:5000";
 
@@ -56,8 +57,9 @@ const Routes = createBrowserRouter([
           element:<PrivateRoute><ManageFood></ManageFood></PrivateRoute>,
         },
         {
-          path:"updatefood",
-          element:<UpdateFood></UpdateFood>
+          path:"updatefood/:id",
+          element:<PrivateRoute><UpdateFood></UpdateFood></PrivateRoute>,
+          loader:({params})=>fetch(`${url}/FoodDetails/${params.id}`)
         },
         {
           path:"otherfoodreq",

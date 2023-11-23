@@ -280,7 +280,7 @@ const FoodDetails = () => {
                                 <input type="hidden" {...register('fstatus')}/>
                             </div>
 
-                            <div>
+                            {/* <div>
                                 <div className="mb-2 block">
                                     <Label value="Additional Notes" />
                                 </div>
@@ -292,7 +292,7 @@ const FoodDetails = () => {
                                     {...register("Aditionalinfo", { required: false })}
                                 />
 
-                            </div>
+                            </div> */}
                             <div>
                                 <div className="mb-2 block">
                                     <Label value="Donate Money" />
