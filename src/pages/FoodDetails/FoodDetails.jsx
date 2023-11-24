@@ -53,7 +53,7 @@ const FoodDetails = () => {
         const foodReq = { ...data}       
        
         axiosSecure.post('/foodreq',foodReq)
-        .then(res=>{     
+        .then(async(res)=>{     
            
                 console.log(res.data)
                 Swal.fire({
@@ -62,6 +62,8 @@ const FoodDetails = () => {
                     showConfirmButton: false,
                     timer: 1000
                 });
+                const foodStatusUpdate = { fstatus: 'pending' }; // Update with the desired status
+                await axiosSecure.put(`/foodstatusupdate/${foodId}`, foodStatusUpdate);
                 navigate('/foodreqsend')
             })          
        
@@ -222,7 +224,8 @@ const FoodDetails = () => {
                                             showTimeSelect
                                             timeFormat="HH:mm"
                                             timeIntervals={15}
-                                            timeCaption="time"                                           
+                                            timeCaption="time"  
+                                            dateFormat="MMMM d, yyyy h:mm aa"                                         
                                             selected={startDate}
                                             readOnly
                                             onChange={(date) => {
@@ -235,7 +238,7 @@ const FoodDetails = () => {
                                 />
 
                                 <input type="hidden" {...register('fReqDate')} value={startDate} />
-                                <input type="hidden" {...register('fReqstatus')} value={'available'}/>
+                                <input type="hidden" {...register('fReqstatus')} value={'pending'}/>
                             </div>
 
                             <div>
@@ -267,7 +270,8 @@ const FoodDetails = () => {
                                             showTimeSelect
                                             timeFormat="HH:mm"
                                             timeIntervals={15}
-                                            timeCaption="time"                                            
+                                            timeCaption="time"  
+                                            dateFormat="MMMM d, yyyy h:mm aa"                                          
                                             selected={exDate}
                                             readOnly
                                             onChange={(date) => {
