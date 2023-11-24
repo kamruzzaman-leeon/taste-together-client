@@ -2,7 +2,7 @@
 
 ## Overview
 
-Welcome to **taste together**, our Community Food Sharing Platform! This project aims to create a user-friendly platform connecting those with surplus food to those in need, reducing food waste, and addressing hunger. We are actively seeking a front-end web developer to join our mission.
+Welcome to **taste together**, our Community Food Sharing Platform! This project aims to create a user-friendly platform connecting those with surplus food to those in need, reducing food waste, and addressing hunger.
 
 ## Live Website
 Visit our live website: [taste together](https://taste-together-21c13.firebaseapp.com/)
