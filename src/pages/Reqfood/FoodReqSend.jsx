@@ -15,7 +15,7 @@ const FoodReqSend = () => {
     const requester = user?.email;
 
     useEffect(() => {
-        axiosSecure.get(`/foodreq/?requester=${requester}`)
+        axiosSecure.get(`/foodreq/?reqEmail=${requester}`)
             .then(res => {
                 setData(res.data);
             })
@@ -43,7 +43,7 @@ const FoodReqSend = () => {
                         if (res.data.deletedCount > 0) {
                             Swal.fire({
                                 icon: 'success',
-                                title: 'Successfully Food Deleted!',
+                                title: 'Successfully Food Request Cancel!',
                                 showConfirmButton: false,
                                 timer: 1500
                             });
@@ -99,13 +99,15 @@ const FoodReqSend = () => {
         {
             header: "ACTION",
             cell: ({ row }) => (
-                
-                        <Button color="warning" onClick={() => handleCancel(row.original._id)}>
-                            Cancel
-                        </Button>
-            
+                row.original.fstatus !== 'delivered' && (
+                    <Button color="warning" onClick={() => handleCancel(row.original._id)}>
+                        Cancel
+                    </Button>
+                )
             ),
         },
+        
+        
     ];
 
     const table = useReactTable({ data, columns, getCoreRowModel: getCoreRowModel() });

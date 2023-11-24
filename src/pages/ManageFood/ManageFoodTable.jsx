@@ -34,13 +34,21 @@ const ManageFoodTable = ({ initialData }) => {
             
         },
         {
+            header: "STATUS",
+            accessorKey: "fstatus",
+            
+        },
+        
+        {
             header: "ACTION",
             cell: ({ row }) => (
+                row.original.fstatus !== 'delivered' && (
                 <tr className='flex flex-col md:flex-row gap-2'>
                     <Button color="warning" onClick={() => handleUpdate(row.original._id)}>Update</Button>
                     <Button color="purple" onClick={() => handleManage(row.original._id)}>Manage</Button>
                     <Button color="failure" onClick={() => handleDelete(row.original._id)}>Delete</Button>
                 </tr>
+                )
             ),
         }
 
@@ -97,7 +105,7 @@ const ManageFoodTable = ({ initialData }) => {
     return (
         <div className='container relative overflow-x-auto mx-auto'>
             {/* <dev><Link to="/addfood"><Button>Add Food</Button></Link></dev> */}
-            <Table hoverable striped className='w-auto mx-auto text-sm'>
+            <Table hoverable striped className='w-auto mx-auto text-sm text-center'>
                 {
                     table.getHeaderGroups().map(headerGroup => (
                         <Table.Head key={headerGroup.id}>
