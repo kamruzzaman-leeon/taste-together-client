@@ -50,7 +50,7 @@ const FoodReqReceive = () => {
                     showConfirmButton: false,
                     timer: 1000
                 })
-                const foodStatusUpdate = { fstatus: 'pending' }; // Update with the desired status
+                const foodStatusUpdate = { fstatus: 'delivered' };
                 await axiosSecure.put(`/foodstatusupdate/${data.foodId}`, foodStatusUpdate);
                 navigate('/managefood')
         }})
