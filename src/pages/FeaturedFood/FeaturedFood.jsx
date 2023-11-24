@@ -10,11 +10,11 @@ const FeaturedFood = () => {
     // const {loading} =useContext(AuthContext);
     const [fFood, setFFood] = useState([]);
 
-    const url = "http://localhost:5000";
+    
 
     useEffect(() => {
 
-        axios.get(`${url}/fFood`)
+        axios.get(`https://taste-together-server.vercel.app/fFood`)
             .then(res => {
                 // console.log(res.data);
                 setFFood(res.data); // Set the fetched data in state

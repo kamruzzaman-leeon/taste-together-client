@@ -12,7 +12,7 @@ const Banner = () => {
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/banner')
+    axios.get('https://taste-together-server.vercel.app/banner')
       .then(res => setData(res.data))
       .catch(error => console.error('Error fetching data:', error));
   }, []);

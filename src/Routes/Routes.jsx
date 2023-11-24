@@ -15,7 +15,7 @@ import FoodReqReceive from "../pages/Reqfood/FoodReqReceive";
 
 
 
-const url = "http://localhost:5000";
+const url = "https://taste-together-server.vercel.app";
 
 const Routes = createBrowserRouter([
     {
@@ -29,36 +29,36 @@ const Routes = createBrowserRouter([
             
         },
         {
-            path:"signin",
+            path:"/signin",
             element:<SignIn></SignIn>,
                        
         },
         {
-            path:"signup",
+            path:"/signup",
             element:<SignUp></SignUp>
         },
 
         {
-            path:"availablefood",
+            path:"/availablefood",
             element:<AvailableFood></AvailableFood>,
             loader:()=>fetch(`${url}/availablefood`)
         },
         {
-          path:"FoodDetails/:id",
+          path:"/FoodDetails/:id",
           element:<PrivateRoute><FoodDetails></FoodDetails></PrivateRoute>,
           loader:({params})=>fetch(`${url}/FoodDetails/${params.id}`)
           
         },
         {
-          path:"addfood",
+          path:"/addfood",
           element:<PrivateRoute><AddFood></AddFood></PrivateRoute>,
         },
         {
-          path:"managefood",
+          path:"/managefood",
           element:<PrivateRoute><ManageFood></ManageFood></PrivateRoute>,
         },
         {
-          path:"updatefood/:id",
+          path:"/updatefood/:id",
           element:<PrivateRoute><UpdateFood></UpdateFood></PrivateRoute>,
           loader:({params})=>fetch(`${url}/FoodDetails/${params.id}`)
         },
@@ -68,7 +68,7 @@ const Routes = createBrowserRouter([
         },
         {
           path:"/reqreceive/:id",
-          element:<FoodReqReceive></FoodReqReceive>
+          element:<PrivateRoute><FoodReqReceive></FoodReqReceive></PrivateRoute>
         }
         
         
