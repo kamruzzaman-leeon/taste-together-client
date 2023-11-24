@@ -222,8 +222,7 @@ const FoodDetails = () => {
                                             showTimeSelect
                                             timeFormat="HH:mm"
                                             timeIntervals={15}
-                                            timeCaption="time"
-                                            dateFormat="MMMM d, yyyy h:mm aa"
+                                            timeCaption="time"                                           
                                             selected={startDate}
                                             readOnly
                                             onChange={(date) => {
@@ -268,8 +267,7 @@ const FoodDetails = () => {
                                             showTimeSelect
                                             timeFormat="HH:mm"
                                             timeIntervals={15}
-                                            timeCaption="time"
-                                            dateFormat="MMMM d, yyyy h:mm aa"
+                                            timeCaption="time"                                            
                                             selected={exDate}
                                             readOnly
                                             onChange={(date) => {
