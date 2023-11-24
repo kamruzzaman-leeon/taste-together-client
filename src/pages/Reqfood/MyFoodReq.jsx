@@ -3,14 +3,14 @@ import PropTypes from 'prop-types'
 import { Button, Table } from 'flowbite-react';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthProvider';
 
 const MyFoodReq = () => {
     const axiosSecure=useAxiosSecure()
     const {user}=useContext(AuthContext)
-    axiosSecure.get(`/foodreq/?email=${user.email}`)
+    axiosSecure.get(`/foodreq/?requester=${user.email}`)
     .then(res=>{
         data = res.data;
         console.log(data)

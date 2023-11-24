@@ -20,6 +20,7 @@ const FeaturedFoodCard = ({ food }) => {
 
     // Format the date
     const formattedDate = expirationDate.toLocaleString("en-US", options);
+    
     return (
         <div className='place-items-stretch transform transition-transform hover:scale-95'>
             <Card className="h-full" imgSrc={fimage} horizontal>

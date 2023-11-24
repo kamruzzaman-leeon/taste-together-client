@@ -85,7 +85,7 @@ const ManageFoodTable = ({ initialData }) => {
     };
 
     const handleManage = (id) => {
-        navigate(`/othersreq/${id}`)
+        navigate(`/reqreceive/${id}`)
         console.log(`Managing item with ID: ${id}`);
     };
 

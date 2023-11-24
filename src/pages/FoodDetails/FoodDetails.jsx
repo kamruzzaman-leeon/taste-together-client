@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet";
 import Title from "../../shared/Title";
-import { Link, useLoaderData } from "react-router-dom";
+import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import { Avatar, Button, Label, Modal, TextInput, Textarea } from "flowbite-react";
 import { useContext, useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
@@ -14,6 +14,7 @@ import Swal from "sweetalert2";
 const FoodDetails = () => {
     const { user } = useContext(AuthContext);
     const axiosSecure= useAxiosSecure();
+    const navigate = useNavigate();
     const { email: reqEmail } = user;
     const fDetails = useLoaderData();
     const { Aditionalinfo, donator, email: donatorEmail,fstatus, fimage, fname, fexpired, fplocation, fquantity, photoURL, _id: foodId } = fDetails;
@@ -44,7 +45,7 @@ const FoodDetails = () => {
     const [startDate, setStartDate] = useState(new Date());
     const [exDate, setExDate] = useState(expirationDate);
     const [openModal, setOpenModal] = useState(false);
-
+    
     
 
     const onSubmit = async (data) => {
@@ -52,15 +53,18 @@ const FoodDetails = () => {
         const foodReq = { ...data}       
        
         axiosSecure.post('/foodreq',foodReq)
-        .then(res=>{
-            // console.log(res.data)
-            Swal.fire({
-                icon: "success",
-                title: "successfully Food Added!",
-                showConfirmButton: false,
-                timer: 1000
-            });
-        })
+        .then(res=>{     
+           
+                console.log(res.data)
+                Swal.fire({
+                    icon: "success",
+                    title: "successfully Food Added!",
+                    showConfirmButton: false,
+                    timer: 1000
+                });
+                navigate('/foodreqsend')
+            })          
+       
         setOpenModal(false); 
     };
 
@@ -232,7 +236,7 @@ const FoodDetails = () => {
                                 />
 
                                 <input type="hidden" {...register('fReqDate')} value={startDate} />
-                                <input type="hidden" {...register('fReqstatus')} value={'pending'}/>
+                                <input type="hidden" {...register('fReqstatus')} value={'available'}/>
                             </div>
 
                             <div>
@@ -276,6 +280,9 @@ const FoodDetails = () => {
                                         />
                                     )}
                                 />
+                                
+                                <input type="hidden" {...register('requestername')} value={user?.displayName} />
+                                <input type="hidden" {...register('requesterImage')} value={user?.photoURL} />
                                 <input type="hidden" {...register('fexpired')} value={exDate} />
                                 <input type="hidden" {...register('fstatus')} value={'pending'}/>
                             </div>

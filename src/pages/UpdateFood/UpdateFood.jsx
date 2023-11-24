@@ -8,17 +8,17 @@ import "react-datepicker/dist/react-datepicker.css";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import Title from "../../shared/Title";
-import { useLoaderData,  useNavigate } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 
 
 const UpdateFood = () => {
 
 
     const olddata = useLoaderData()
-    console.log("olddata",olddata)
-    const {_id,fstatus,fname,fimage,fquantity,fexpired, fplocation,Aditionalinfo}=olddata
-    
-    const expirationDate = new Date(fexpired);
+    console.log("olddata", olddata)
+    const { _id, fstatus, fname, fimage, fquantity, fexpired, fplocation, Aditionalinfo } = olddata
+
+   
     // Options for formatting the date
     const options = {
         year: "numeric",
@@ -29,8 +29,9 @@ const UpdateFood = () => {
         hour12: true,
     };
     // Format the date
-    const formattedDate = expirationDate.toLocaleString("en-US", options);
-    console.log('format',formattedDate)
+    // const formattedDate = expirationDate.toLocaleString("en-US", options);
+    const expirationDate = new Date(fexpired);
+    const [exDate, setExDate] = useState(expirationDate);
 
     const axiosSecure = useAxiosSecure();
     const navigate = useNavigate()
@@ -41,30 +42,31 @@ const UpdateFood = () => {
         handleSubmit,
         formState: { errors },
     } = useForm();
-    const [exDate, setExDate] = useState(expirationDate);
+  
     
+
 
     const onSubmit = async (data) => {
         try {
-            
+
             data.fquantity = parseInt(data.fquantity, 10);
-            const updateFood = {_id,fstatus,...data}
+            const updateFood = { _id, fstatus, ...data }
             console.log(updateFood)
             const url = `/updatefood/${_id}`
             axiosSecure.put(url, updateFood)
                 .then(res => {
                     console.log(res.data)
-                    if (res.data.modifiedCount>0) {
+                    if (res.data.modifiedCount > 0) {
                         console.log(res.data.modifiedCount)
                         Swal.fire({
                             icon: "success",
-                            title: "successfully Food Added!",
+                            title: "successfully Food update!",
                             showConfirmButton: false,
                             timer: 1000
                         })
                         navigate('/managefood')
-                      
-                        
+
+
                     }
 
                 })
@@ -72,7 +74,7 @@ const UpdateFood = () => {
             console.log(error);
         }
     }
-    
+
     return (
 
         <>
@@ -136,7 +138,6 @@ const UpdateFood = () => {
                                 <Label value="Food Expired Date" />
                                 <br />
                                 <Controller
-
                                     control={control}
                                     name="fexpired"
                                     render={({ field }) => (
@@ -147,7 +148,7 @@ const UpdateFood = () => {
                                             timeIntervals={15}
                                             timeCaption="time"
                                             dateFormat="MMMM d, yyyy h:mm aa"
-                                            selected={exDate}                                            
+                                            selected={exDate}
                                             onChange={(date) => {
                                                 setExDate(date);
                                                 field.onChange(date);
@@ -156,6 +157,7 @@ const UpdateFood = () => {
                                         />
                                     )}
                                 />
+
                                 {errors.fexpired && (
                                     <p className="text-red-600">Expiry date is required.</p>
                                 )}

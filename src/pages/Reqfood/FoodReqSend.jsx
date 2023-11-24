@@ -15,7 +15,7 @@ const FoodReqSend = () => {
     const requester = user?.email;
 
     useEffect(() => {
-        axiosSecure.get(`/foodreq/?email=${requester}`)
+        axiosSecure.get(`/foodreq/?requester=${requester}`)
             .then(res => {
                 setData(res.data);
             })
@@ -71,6 +71,10 @@ const FoodReqSend = () => {
         {
             header: "DONATOR",
             accessorKey: "donator",
+        },
+        {
+            header: "FOOD",
+            accessorKey: "fname",
         },
         {
             header: "PICKUP LOCATION",

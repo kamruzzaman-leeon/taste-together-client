@@ -11,6 +11,7 @@ import PrivateRoute from "./PrivateRoute";
 import FoodDetails from "../pages/FoodDetails/FoodDetails";
 import UpdateFood from "../pages/UpdateFood/UpdateFood";
 import FoodReqSend from "../pages/Reqfood/FoodReqSend";
+import FoodReqReceive from "../pages/Reqfood/FoodReqReceive";
 
 
 
@@ -63,7 +64,11 @@ const Routes = createBrowserRouter([
         },
         {
           path:"/foodreqsend",
-          element:<FoodReqSend></FoodReqSend>
+          element:<PrivateRoute><FoodReqSend></FoodReqSend></PrivateRoute>
+        },
+        {
+          path:"/reqreceive/:id",
+          element:<FoodReqReceive></FoodReqReceive>
         }
         
         
