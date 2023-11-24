@@ -285,19 +285,7 @@ const FoodDetails = () => {
                                 <input type="hidden" {...register('fstatus')} value={'pending'}/>
                             </div>
 
-                            {/* <div>
-                                <div className="mb-2 block">
-                                    <Label value="Additional Notes" />
-                                </div>
-                                <Textarea
-                                    type="text"
-                                    placeholder="Additional Notes"
-                                    name="Additionalinfo"
-                                    defaultValue={`${Aditionalinfo}`}
-                                    {...register("Aditionalinfo", { required: false })}
-                                />
-
-                            </div> */}
+                           
                             <div>
                                 <div className="mb-2 block">
                                     <Label value="Donate Money" />
