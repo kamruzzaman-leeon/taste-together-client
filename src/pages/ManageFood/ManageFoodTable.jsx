@@ -42,7 +42,7 @@ const ManageFoodTable = ({ initialData }) => {
         {
             header: "ACTION",
             cell: ({ row }) => (
-                row.original.fstatus !== 'delivered' && (
+                row.original.fstatus!== 'delivered' && (
                 <tr className='flex flex-col md:flex-row gap-2'>
                     <Button color="warning" onClick={() => handleUpdate(row.original._id)}>Update</Button>
                     <Button color="purple" onClick={() => handleManage(row.original._id)}>Manage</Button>
@@ -100,7 +100,7 @@ const ManageFoodTable = ({ initialData }) => {
     const handleUpdate = (id) => {
         navigate(`/updatefood/${id}`);   
         
-        // console.log(`Updating item with ID: ${id}`);
+        console.log(`Updating item with ID: ${id}`);
     };
     return (
         <div className='container relative overflow-x-auto mx-auto'>

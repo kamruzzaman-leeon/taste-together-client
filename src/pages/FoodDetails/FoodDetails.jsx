@@ -238,7 +238,7 @@ const FoodDetails = () => {
                                 />
 
                                 <input type="hidden" {...register('fReqDate')} value={startDate} />
-                                <input type="hidden" {...register('fReqstatus')} value={'pending'}/>
+                                <input type="hidden" {...register('fstatus')} value={'pending'}/>
                             </div>
 
                             <div>
